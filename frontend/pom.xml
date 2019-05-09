@@ -3,17 +3,68 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
+  <parent>
         <groupId>com.onlineshop</groupId>
         <artifactId>shop</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>frontend</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+  <artifactId>frontend</artifactId>
+  <version>${project.parent.version}</version>
+  <packaging>jar</packaging>
 
-    <name>shop</name>
-    <description>Frontend app in Angular 7</description>
+  <name>shop</name>
+  <description>Frontend app in Angular 7</description>
+
+  <properties>
+    <frontend-maven-plugin.version>1.6</frontend-maven-plugin.version>
+    <frontend-maven-plugin.nodeVersion>v10.15.3</frontend-maven-plugin.nodeVersion>
+    <frontend-maven-plugin.npmVersion>6.4.1</frontend-maven-plugin.npmVersion>
+  </properties>
+
+  <build>
+
+  <plugins>
+
+    <plugin>
+      <groupId>com.github.eirslett</groupId>
+      <artifactId>frontend-maven-plugin</artifactId>
+      <version>${frontend-maven-plugin.version}</version>
+
+      <configuration>
+        <workingDirectory>frontend</workingDirectory>
+        <nodeVersion>${frontend-maven-plugin.nodeVersion}</nodeVersion>
+        <npmVersion>${frontend-maven-plugin.npmVersion}</npmVersion>
+      </configuration>
+
+      <executions>
+        <execution>
+          <id>install node and npm</id>
+          <goals>
+            <goal>install-node-and-npm</goal>
+          </goals>
+        </execution>
+        <execution>
+          <id>npm install</id>
+          <goals>
+            <goal>npm</goal>
+          </goals>
+        </execution>
+        <execution>
+          <id>npm run build</id>
+          <goals>
+            <goal>npm</goal>
+          </goals>
+          <phase>generate-resources</phase>
+          <configuration>
+            <arguments>run build</arguments>
+          </configuration>
+        </execution>
+      </executions>
+    </plugin>
+
+  </plugins>
+
+  </build>
 
 </project>

@@ -2,7 +2,6 @@ HELP.md
 /target/
 target/
 */target
-resources/
 */resources/static
 !.mvn/wrapper/maven-wrapper.jar
 
