@@ -1,6 +1,8 @@
 HELP.md
 /target/
 target/
+*/target
+*/resources/static
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
@@ -52,11 +54,20 @@ out/
 /app/**/*.js
 /app/**/*.js.map
 
+*/dist
+*/tmp
+*/app/**/*.js
+*/app/**/*.js.map
+
 # dependencies
 /bower_components
 /node
 /node_modules
 node/
+*/bower_components
+*/node
+*/node_modules
+*node/
 
 # Compiled class file
 *.class
