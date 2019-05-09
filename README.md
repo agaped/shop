@@ -1,8 +1,8 @@
-#shop-online
+# shop-online
 
-##This is a REST application built with Spring Boot 2 and Angular 7
+## This is a REST application built with Spring Boot 2 and Angular 7
 
-##Requirements to run it locally:
+## Requirements to run it locally:
 * Maven >= 3.x
 * Java  >= 8
 * MySql server with created database shop, scripts are available:
@@ -19,7 +19,7 @@ with new username and password
 5. mvn spring-boot:run (app runs on port 8081 by default, to change it add a flag 
 -Dserver.port=XXXX)
 
-##Technology used:
+## Technology used:
 * Maven
 * Java v.8
 * node.js v.10.15.3
