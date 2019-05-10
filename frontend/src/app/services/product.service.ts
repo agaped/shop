@@ -15,6 +15,6 @@ export class ProductService {
   constructor(private http:HttpClient) { }
 
   getProducts() {
-    return this.http.get('/server/api/v1/products');
+    return this.http.get('http://localhost:8081/api/v1/products');
   }
 }
