@@ -1,0 +1,23 @@
+<h1>Available Products</h1>
+<div class="row">
+  <div class="col-12">
+    <div class="table-responsive">
+
+      <table class="table">
+        <tbody>
+        <tr *ngFor="let product of products">
+          <td><img src="" alt="Sample Pictures"></td>
+          <td>
+            <strong>{{product.name}}</strong><br/>
+            <strong>Producent: {{product.producer}}</strong><br/>
+            <strong>PLN {{product.price}}</strong><br/>
+            <strong>{{product.description}}</strong><br/>
+          </td>
+          <!--<td><button type="submit" class="btn btn-primary" (click)="reserveRoom(room.id)">Reserve</button></td>-->
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
