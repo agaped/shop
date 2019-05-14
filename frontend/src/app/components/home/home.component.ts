@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductService} from "../../services/product.service";
+import {CategoryService} from "../../services/category.service";
 
 @Component({
   selector: 'app-home',
@@ -9,11 +10,14 @@ import {ProductService} from "../../services/product.service";
 export class HomeComponent implements OnInit {
 
   public products;
+  public categories;
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService,
+              private categoryService: CategoryService) { }
 
   ngOnInit() {
     this.getProducts();
+    this.getCategories();
   }
 
   getProducts() {
@@ -21,6 +25,14 @@ export class HomeComponent implements OnInit {
       data => this.products = data,
       err => console.log(err),
    () => console.log('products loaded')
+    );
+  }
+
+  getCategories() {
+    this.categoryService.getCategories().subscribe(
+      data=> this.categories=data,
+      err=> console.log(err),
+      () => console.log('categories loaded')
     );
   }
 }

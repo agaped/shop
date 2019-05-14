@@ -5,6 +5,7 @@ import { HttpClientModule} from "@angular/common/http";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductService} from "./services/product.service";
+import { CategoryService} from "./services/category.service";
 import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
@@ -17,7 +18,7 @@ import { HomeComponent } from './components/home/home.component';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [ProductService],
+  providers: [ProductService, CategoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
