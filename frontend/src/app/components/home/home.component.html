@@ -1,23 +1,62 @@
-<h1>Available Products</h1>
-<div class="row">
-  <div class="col-12">
-    <div class="table-responsive">
+<div class="container margines">
+  <div class="row">
+    <div class="col-lg-3">
 
-      <table class="table">
-        <tbody>
-        <tr *ngFor="let product of products">
-          <td><img src="" alt="Sample Pictures"></td>
-          <td>
-            <strong>{{product.name}}</strong><br/>
-            <strong>Producent: {{product.producer}}</strong><br/>
-            <strong>PLN {{product.price}}</strong><br/>
-            <strong>{{product.description}}</strong><br/>
-          </td>
-          <!--<td><button type="submit" class="btn btn-primary" (click)="reserveRoom(room.id)">Reserve</button></td>-->
-        </tr>
-        </tbody>
-      </table>
+      <h1 class="my-4">Biker Shop</h1>
+      <div class="list-group">
+        <a href="#" class="list-group-item">Category 1</a>
+        <a href="#" class="list-group-item">Category 2</a>
+        <a href="#" class="list-group-item">Category 3</a>
+      </div>
 
     </div>
+
+    <div class="col-lg-9">
+
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="assets/images/carousel_1.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="assets/images/carousel_2.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="assets/images/carousel_3.jpg" class="d-block w-100" alt="...">
+          </div>
+        </div>
+      </div>
+
+      <div class="row margines">
+
+        <div class="col-lg-4 col-md-6 mb-4" *ngFor="let product of products">
+          <div class="card h-100">
+            <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="#">{{product.name}}</a>
+              </h4>
+              <h5>Producent: {{product.producer}}</h5>
+              <h5>PLN {{product.price}}</h5>
+              <!--<p class="card-text">{{product.description}}</p>-->
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- /.row -->
+      </div>
+
+      <!-- /.col-lg-9 -->
+    </div>
+
+    <!-- /.row -->
   </div>
+
+  <!-- /.container -->
 </div>
+
+
+
