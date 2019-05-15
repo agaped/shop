@@ -1,0 +1,38 @@
+<div class="container margines">
+  <div class="row">
+
+    <div class="col-lg-3">
+
+      <h1 class="my-4">Biker Shop</h1>
+      <div class="list-group" *ngFor="let category of categories">
+        <a href="home" class="list-group-item">{{category.name}}</a>
+      </div>
+
+    </div>
+
+    <div class="col-lg-9">
+
+      <div class="card" *ngIf='product'>
+        <a href="product/{{product.id}}"><img class="card-img" src="{{product.url}}" alt=""></a>
+        <div class="card-body">
+          <h4 class="card-title">
+            <a href="#">{{product.name}}</a>
+          </h4>
+          <h5>Producent: {{product.producer}}</h5>
+          <h5>PLN {{product.price}}</h5>
+          <p class="card-text">{{product.description}}</p>
+        </div>
+
+        <div class="card-footer">
+          <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+        </div>
+      </div>
+      <!-- /.col-lg-9 -->
+    </div>
+
+    <!-- /.row -->
+  </div>
+
+  <!-- /.container -->
+</div>
+
