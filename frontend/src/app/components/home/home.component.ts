@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit{
   public categories;
   public visibleProducts;
   private _nameSearch : String;
+  private _producerSearch : String;
 
   constructor(private productService: ProductService,
               private categoryService: CategoryService) { }
@@ -24,7 +25,17 @@ export class HomeComponent implements OnInit{
 
   set nameSearch(value: String) {
     this._nameSearch = value;
-    this.visibleProducts = this.filterProducts(value);
+    this.visibleProducts = this.filterProductsByName(value);
+  }
+
+
+  get producerSearch(): String {
+    return this._producerSearch;
+  }
+
+  set producerSearch(value: String) {
+    this._producerSearch = value;
+    this.visibleProducts = this.filterProductsByProducer(value);
   }
 
   ngOnInit() {
@@ -49,8 +60,13 @@ export class HomeComponent implements OnInit{
     );
   }
 
-  filterProducts(searchString: String) {
+  filterProductsByName(searchString: String) {
     return this.products.filter(product =>
       product.name.toLowerCase().indexOf(searchString.toLowerCase()) !==-1);
+  }
+
+  filterProductsByProducer(searchString: String) {
+    return this.products.filter(product =>
+      product.producer.toLowerCase().indexOf(searchString.toLowerCase()) !==-1);
   }
 }
