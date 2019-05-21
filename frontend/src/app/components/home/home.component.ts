@@ -69,4 +69,9 @@ export class HomeComponent implements OnInit{
     return this.products.filter(product =>
       product.producer.toLowerCase().indexOf(searchString.toLowerCase()) !==-1);
   }
+
+  filterByCategory(searchString : String) {
+    this.visibleProducts = this.products.filter(product =>
+      product.category.toLowerCase().indexOf(searchString.toLowerCase()) !==-1);
+  }
 }

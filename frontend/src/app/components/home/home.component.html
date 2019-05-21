@@ -5,7 +5,7 @@
       <h1 class="my-4">Biker Shop</h1>
       <a href="home" class="list-group-item">wszystkie</a>
       <div class="list-group" *ngFor="let category of categories">
-        <a href="home" class="list-group-item">{{category.name}}</a>
+        <a href="home" class="list-group-item" (click)="!!filterByCategory(category.name)">{{category.name}}</a>
       </div>
       <form class="margines-form">
         <div class="form-group">
