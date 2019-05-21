@@ -8,6 +8,7 @@ import { ProductService} from "./services/product.service";
 import { CategoryService} from "./services/category.service";
 import { HomeComponent } from './components/home/home.component';
 import { ProductComponent } from './components/product/product.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ProductComponent } from './components/product/product.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [ProductService, CategoryService],
   bootstrap: [AppComponent]
