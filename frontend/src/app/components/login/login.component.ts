@@ -21,6 +21,6 @@ export class LoginComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['basket']);
+    this.router.navigate(['home']);
   }
 }
