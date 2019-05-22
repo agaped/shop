@@ -10,13 +10,16 @@ import { HomeComponent } from './components/home/home.component';
 import { ProductComponent } from './components/product/product.component';
 import {FormsModule} from "@angular/forms";
 import { BasketComponent } from './components/basket/basket.component';
+import { LoginComponent } from './components/login/login.component';
+import {AuthService} from "./services/auth.service";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ProductComponent,
-    BasketComponent
+    BasketComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,7 @@ import { BasketComponent } from './components/basket/basket.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [ProductService, CategoryService],
+  providers: [ProductService, CategoryService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

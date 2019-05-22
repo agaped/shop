@@ -1,0 +1,22 @@
+<div class="container margines">
+
+<h1>Biker Shop</h1>
+<h2 class="margines">Login</h2>
+<hr>
+<div class="col-md-5">
+  <form #loginForm ="ngForm" (ngSubmit)="login(loginForm.value)" autocomplete="off">
+    <div class="form-group" >
+      <label for="userEmail">User Email:</label>
+      <input (ngModel)="userName" name="userName" id="userEmail" type="email" class="form-control" placeholder="Enter email" />
+    </div>
+    <div class="form-group" >
+      <label for="password">Password:</label>
+      <input (ngModel)="password" name="password" id="password" type="password" class="form-control"placeholder="Enter password" />
+    </div>
+
+    <button type="submit" class="btn btn-primary loginButton">Login</button>
+    <button type="button" (click)="cancel()" class="btn btn-danger loginButton" style="float: right">Cancel</button>
+  </form>
+</div>
+
+</div>
