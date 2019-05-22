@@ -9,12 +9,14 @@ import { CategoryService} from "./services/category.service";
 import { HomeComponent } from './components/home/home.component';
 import { ProductComponent } from './components/product/product.component';
 import {FormsModule} from "@angular/forms";
+import { BasketComponent } from './components/basket/basket.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ProductComponent
+    ProductComponent,
+    BasketComponent
   ],
   imports: [
     BrowserModule,
