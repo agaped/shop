@@ -20,8 +20,13 @@ public class Product {
 
     private String description;
 
-    @Column(name = "category_id_category")
-    private int categoryId;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "category_id_category", referencedColumnName = "id_category")
+    private Category category;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "img_id_img", referencedColumnName = "id_img")
+    private Img img;
 
     public Product() {
     }
@@ -66,11 +71,19 @@ public class Product {
         this.description = description;
     }
 
-    public int getCategoryId() {
-        return categoryId;
+    public Img getImg() {
+        return img;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public void setImg(Img img) {
+        this.img = img;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

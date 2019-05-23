@@ -1,0 +1,93 @@
+<div class="container margines">
+  <div class="row">
+    <div class="col-lg-3">
+
+      <h1 class="my-4">Biker Shop</h1>
+      <p>Search by categories:</p>
+      <a href="home" class="list-group-item">wszystkie</a>
+      <div class="list-group" *ngFor="let category of categories">
+        <a href="home" class="list-group-item" (click)="!!filterByCategory(category.name)">{{category.name}}</a>
+      </div>
+      <form class="margines-form">
+        <div class="form-group">
+          <label for="nameInput">Search by name:</label>
+          <input class="form-control" id="nameInput" type="text" placeholder="Enter product name"
+                 [(ngModel)]="nameSearch" [ngModelOptions]="{standalone: true}"/>
+        </div>
+        <div class="form-group">
+          <label for="producerInput">Search by producer:</label>
+          <input class="form-control" id="producerInput" type="text" placeholder="Enter producer"
+                 [(ngModel)]="producerSearch" [ngModelOptions]="{standalone: true}"/>
+        </div>
+      </form>
+
+    </div>
+
+    <div class="col-lg-9">
+
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="assets/images/carousel_1.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="assets/images/carousel_2.jpg" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="assets/images/carousel_3.jpg" class="d-block w-100" alt="...">
+          </div>
+        </div>
+      </div>
+
+        <div *ngIf="visibleProducts; else showProducts">
+          <div class="row margines">
+            <div class="col-lg-4 col-md-6 mb-4" *ngFor="let product of visibleProducts">
+              <div class="card h-100">
+                <a href="product/{{product.id}}"><img class="card-img-top" src="{{product.url}}" alt=""></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <a href="product/{{product.id}}">{{product.name}}</a>
+                  </h4>
+                  <h5>Producent: {{product.producer}}</h5>
+                  <h5>{{product.price | currency: 'PLN '}}</h5>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- /.row -->
+        <ng-template #showProducts>
+          <div class="row margines">
+            <div class="col-lg-4 col-md-6 mb-4" *ngFor="let product of products">
+              <div class="card h-100">
+                <a href="product/{{product.id}}"><img class="card-img-top" src="{{product.url}}" alt=""></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <a href="product/{{product.id}}">{{product.name}}</a>
+                  </h4>
+                  <h5>Producent: {{product.producer}}</h5>
+                  <h5>{{product.price | currency: 'PLN '}}</h5>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+
+      <!-- /.col-lg-9 -->
+    </div>
+
+    <!-- /.row -->
+  </div>
+
+  <!-- /.container -->
+</div>
+
+
+
