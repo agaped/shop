@@ -1,14 +1,14 @@
 package com.onlineshop.shop.dto;
 
-public class UserFormDto {
+public class LoginFormDto {
 
     private String username;
     private String password;
 
-    public UserFormDto() {
+    public LoginFormDto() {
     }
 
-    public UserFormDto(String username, String password) {
+    public LoginFormDto(String username, String password) {
         this.username = username;
         this.password = password;
     }

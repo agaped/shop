@@ -14,6 +14,14 @@ export class LoginComponent implements OnInit {
   mouseoverLogin;
   loginInvalid=false;
 
+  mouseoverRegister;
+  registerInvalid=false;
+  loginInfo=false;
+  name;
+  surname;
+  email;
+  pass;
+
   constructor(private router:Router,
               private authService:AuthService) { }
 
@@ -33,5 +41,19 @@ export class LoginComponent implements OnInit {
 
   cancel() {
     this.router.navigate(['home']);
+  }
+
+  registerUser(formValues) {
+    this.authService.registerUser(formValues.email,formValues.name, formValues.surname,formValues.pass)
+      .subscribe( response => {
+        if(!response){
+          this.registerInvalid=true;
+          console.log("registerUser(),if, response: "+response);
+        }else{
+          this.router.navigate(['login']);
+          this.loginInfo=true;
+          console.log("registerUser(), else, response: "+response);
+        }
+      })
   }
 }

@@ -44,4 +44,14 @@ export class AuthService {
     this.http.post('http://localhost:8081/api/v1/logout', {}, options)
       .subscribe(response => console.log("Logged user: "+response));
   }
+
+  registerUser(email: string, name: string, surname: string, pass: string) {
+    let registerInfo={email:email, name:name, surname:surname, password:pass, role: 'client'};
+    let options={headers: new HttpHeaders({'Content-Type':'application/json'})};
+
+    return this.http.post('http://localhost:8081/api/v1/register', registerInfo, options)
+      .pipe(catchError(err => {
+        return of(false)
+      }))
+  }
 }

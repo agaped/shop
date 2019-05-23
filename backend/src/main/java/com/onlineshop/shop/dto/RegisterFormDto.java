@@ -1,21 +1,20 @@
 package com.onlineshop.shop.dto;
 
-public class UserDto {
+public class RegisterFormDto {
 
-    private int id;
     private String email;
     private String name;
     private String surname;
+    private String password;
 
-    public UserDto() {
+    public RegisterFormDto() {
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public RegisterFormDto(String email, String name, String surname, String pass) {
+        this.email = email;
+        this.name = name;
+        this.surname = surname;
+        this.password = pass;
     }
 
     public String getEmail() {
@@ -42,4 +41,11 @@ public class UserDto {
         this.surname = surname;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
