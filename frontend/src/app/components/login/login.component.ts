@@ -9,7 +9,10 @@ import {AuthService} from "../../services/auth.service";
 })
 export class LoginComponent implements OnInit {
 
+  userName;
+  password;
   mouseoverLogin;
+  loginInvalid=false;
 
   constructor(private router:Router,
               private authService:AuthService) { }
@@ -18,8 +21,14 @@ export class LoginComponent implements OnInit {
   }
 
   login(formValues) {
-    this.authService.loginUser(formValues.userName, formValues.password);
-    this.router.navigate(['basket']);
+    this.authService.loginUser(formValues.userName, formValues.password)
+      .subscribe( response => {
+      if(!response){
+        this.loginInvalid=true;
+      }else{
+        this.router.navigate(['basket']);
+      }
+      })
   }
 
   cancel() {
