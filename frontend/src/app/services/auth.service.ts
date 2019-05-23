@@ -1,5 +1,4 @@
-import { Injectable } from '@angular/core';
-import {IUser} from "../models/user.model";
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, tap} from "rxjs/operators";
 import {of} from "rxjs/internal/observable/of";
@@ -9,7 +8,7 @@ import {of} from "rxjs/internal/observable/of";
 })
 export class AuthService {
 
-  currentUser : IUser;
+  currentUser;
 
   constructor(private http: HttpClient) { }
 
