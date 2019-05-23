@@ -1,4 +1,4 @@
-<div class="container margines">
+<div class="container margines" xmlns:float="http://www.w3.org/1999/xhtml">
   <div class="row">
 
     <div class="col-lg-3">
@@ -16,6 +16,7 @@
           <h4 class="card-title">
             <a href="#">{{product.name}}</a>
           </h4>
+          <a type="button" class="btn btn-info" style="float: right;" href="basket">Dodaj do koszyka</a>
           <h5>Producent: {{product.producer}}</h5>
           <h5>{{product.price  | currency: 'PLN '}}</h5>
           <p class="card-text">{{product.description}}</p>

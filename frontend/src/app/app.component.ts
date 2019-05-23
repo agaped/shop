@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AuthService} from "./services/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'frontend';
+
+  constructor(public authService:AuthService) {
+  }
+
+  ngOnInit() {
+    this.authService.checkAuthenticationStatus();
+  }
+
+  logout() {
+    this.authService.currentUser = undefined;
+    this.authService.logout();
+  }
 }
