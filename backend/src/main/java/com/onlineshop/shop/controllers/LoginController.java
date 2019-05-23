@@ -14,11 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.constraints.NotNull;
 
 @RestController
-@RequestMapping(path = "api/v1/login")
+@RequestMapping(path = "api/v1")
 public class LoginController {
 
     private UserRepository userRepository;
     private UserConverter userConverter;
+    UserDto loggedUser;
 
     @Autowired
     public LoginController(UserRepository userRepository, UserConverter userConverter) {
@@ -26,7 +27,7 @@ public class LoginController {
         this.userConverter = userConverter;
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST, path = "/login")
     public UserDto login(@RequestBody @NotNull UserFormDto userFormDto) {
         if (checkIfEmailExist(userFormDto.getUsername())) {
             User user = userRepository.findByEmail(userFormDto.getUsername()).get();
@@ -38,7 +39,6 @@ public class LoginController {
     }
 
     private UserDto authorize(@RequestBody @NotNull UserFormDto userFormDto, User user) {
-        UserDto loggedUser;
         if (user.getPassword().equals(userFormDto.getPassword())) {
             loggedUser = userConverter.convert(user);
         }else{
@@ -49,5 +49,19 @@ public class LoginController {
 
     private boolean checkIfEmailExist(String email) {
         return userRepository.findByEmail(email).isPresent();
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/currentIdentity")
+    public UserDto checkLoginStatus() {
+        if (null == this.loggedUser) {
+            throw new RuntimeException("Nobody logged in");
+        }else {
+            return this.loggedUser;
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.POST, path = "/logout")
+    public void logout(@RequestBody UserFormDto userFormDto) {
+        this.loggedUser=null;
     }
 }

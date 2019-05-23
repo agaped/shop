@@ -11,4 +11,13 @@ export class AppComponent {
 
   constructor(public authService:AuthService) {
   }
+
+  ngOnInit() {
+    this.authService.checkAuthenticationStatus();
+  }
+
+  logout() {
+    this.authService.currentUser = undefined;
+    this.authService.logout();
+  }
 }
