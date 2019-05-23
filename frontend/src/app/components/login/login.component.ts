@@ -9,6 +9,8 @@ import {AuthService} from "../../services/auth.service";
 })
 export class LoginComponent implements OnInit {
 
+  mouseoverLogin;
+
   constructor(private router:Router,
               private authService:AuthService) { }
 
