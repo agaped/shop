@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CartService} from "../../services/cart.service";
 
 @Component({
@@ -19,7 +19,6 @@ export class BasketComponent implements OnInit {
   private loadCart() {
     this.cartService.loadCart();
     this.cart=this.cartService.items;
-    console.log("Cart component loaded");
   }
 
   getTotal() {
@@ -29,5 +28,15 @@ export class BasketComponent implements OnInit {
       total += (product.item.price * product.quantity);
     }
     return total;
+  }
+
+  addToCart(product) {
+    this.cartService.addToCart(product.item);
+    this.loadCart();
+  }
+
+  removeFromCart(product : any) {
+    this.cartService.removeFromCart(product);
+    this.loadCart()
   }
 }

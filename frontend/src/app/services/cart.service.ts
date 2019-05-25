@@ -66,4 +66,27 @@ export class CartService {
     localStorage.setItem('cart', JSON.stringify(this.cart));
   }
 
+  removeFromCart(product: any) {
+    this.cart = JSON.parse(localStorage.getItem("cart"));
+    let index: number = -1;
+    for (let i = 0; i < this.cart.length; i++) {
+      let item: ICartItem = JSON.parse(this.cart[i]);
+      if (item.item.id == product.item.id) {
+        index=i;
+        break;
+      }
+  }
+    let item: ICartItem = JSON.parse(this.cart[index]);
+    if (item.quantity === 1) {
+      this.cart.splice(index, 1);
+    } else {
+      item.quantity--;
+      this.cart[index] = JSON.stringify(item);
+    }
+    this.saveToLocalStorage();
+    this.loadCart();
+    console.log("Removed from cart: " + product.item.name);
+    }
+
+
 }

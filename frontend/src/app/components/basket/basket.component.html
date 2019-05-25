@@ -10,7 +10,7 @@
 
     <div class="col-lg-9">
 
-      <div class="table-container">
+      <div *ngIf="cart?.length > 0; else emptyCart" class="table-container">
         <h2>KOSZYK: </h2>
           <table>
             <tr>
@@ -25,7 +25,10 @@
               <td>{{product.item.price | currency: 'PLN '}}</td>
               <td>{{product.quantity}}</td>
               <td>{{product.item.price*product.quantity | currency: 'PLN '}}</td>
-              <td></td>
+              <td>
+                <button (click)="addToCart(product)" class="btn btn-light cart-button"> + </button>
+                <button (click)="removeFromCart(product)" class="btn btn-dark cart-button"> - </button>
+              </td>
             </tr>
             <tr>
               <td></td>
@@ -37,9 +40,12 @@
           </table>
       </div>
 
+      <ng-template #emptyCart>
+        <div class="alert alert-info">Twój koszyk jest pusty</div>
+      </ng-template>
+
+      <!--<div class="col-lg-9">-->
     </div>
-
-
     <!--row-->
   </div>
   <!--container margines-->
