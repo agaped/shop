@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       if(!response){
         this.loginInvalid=true;
       }else{
-        this.router.navigate(['basket']);
+        this.router.navigate(['cart']);
       }
       })
   }

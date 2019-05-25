@@ -15,7 +15,7 @@ const routes: Routes = [
     component: ProductComponent
   },
   {
-    path: 'basket',
+    path: 'cart',
     component: BasketComponent
   },
   {
