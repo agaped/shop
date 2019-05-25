@@ -39,4 +39,14 @@ export class BasketComponent implements OnInit {
     this.cartService.removeFromCart(product);
     this.loadCart()
   }
+
+  isCartValid() {
+    if (this.cart === undefined) {
+      return false;
+    }
+    if (this.cart.length == 0) {
+      return false;
+    }
+    return true;
+  }
 }

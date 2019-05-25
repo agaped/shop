@@ -10,7 +10,7 @@
 
     <div class="col-lg-9">
 
-      <div *ngIf="cart?.length > 0; else emptyCart" class="table-container">
+      <div *ngIf="isCartValid(); else emptyCart" class="table-container">
         <h2>KOSZYK: </h2>
           <table>
             <tr>
