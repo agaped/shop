@@ -9,6 +9,34 @@
     </div>
 
     <div class="col-lg-9">
+
+      <div class="table-container">
+        <h2>KOSZYK: </h2>
+          <table>
+            <tr>
+              <th>Produkt</th>
+              <th>Cena</th>
+              <th>Ilość</th>
+              <th>Razem</th>
+              <th></th>
+            </tr>
+            <tr *ngFor="let product of cart">
+              <td>{{product.item.name}}</td>
+              <td>{{product.item.price | currency: 'PLN '}}</td>
+              <td>{{product.quantity}}</td>
+              <td>{{product.item.price*product.quantity | currency: 'PLN '}}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td><h3>Razem</h3></td>
+              <td><h3>{{getTotal() | currency: 'PLN '}}</h3></td>
+              <td></td>
+            </tr>
+          </table>
+      </div>
+
     </div>
 
 

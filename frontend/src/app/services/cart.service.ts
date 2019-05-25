@@ -13,7 +13,7 @@ export class CartService {
 
   constructor() {}
 
-  private loadCart() {
+  public loadCart() {
     this.items=[];
     this.cart = JSON.parse(localStorage.getItem('cart'));
     for (let i = 0; i < this.cart.length ; i++) {
