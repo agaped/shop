@@ -4,14 +4,50 @@
     <div class="col-lg-3">
 
       <h1 class="my-4">Biker Shop</h1>
-      <a href="home" class="list-group-item">Powrót do strony głównej</a>
+      <a href="home" class="btn btn-light button-home">Powrót do strony głównej</a>
 
     </div>
 
     <div class="col-lg-9">
+
+      <div *ngIf="isCartValid(); else emptyCart" class="table-container">
+        <h2>KOSZYK: </h2>
+          <table>
+            <tr>
+              <th>Produkt</th>
+              <th>Cena</th>
+              <th>Ilość</th>
+              <th>Razem</th>
+              <th></th>
+            </tr>
+            <tr *ngFor="let product of cart">
+              <td>{{product.item.name}}</td>
+              <td>{{product.item.price | currency: 'PLN '}}</td>
+              <td>{{product.quantity}}</td>
+              <td>{{product.item.price*product.quantity | currency: 'PLN '}}</td>
+              <td>
+                <button (click)="addToCart(product)" class="btn btn-light cart-button"> + </button>
+                <button (click)="removeFromCart(product)" class="btn btn-dark cart-button"> - </button>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td><h3>Razem</h3></td>
+              <td><h3>{{getTotal() | currency: 'PLN '}}</h3></td>
+              <td></td>
+            </tr>
+          </table>
+
+        <a href="order" class="btn btn-primary button-order">Zamów</a>
+      </div>
+
+      <ng-template #emptyCart>
+        <div class="alert alert-info">Twój koszyk jest pusty</div>
+      </ng-template>
+
+      <!--<div class="col-lg-9">-->
     </div>
-
-
     <!--row-->
   </div>
   <!--container margines-->

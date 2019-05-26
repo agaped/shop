@@ -1,6 +1,7 @@
 import {Component, OnChanges, OnInit} from '@angular/core';
 import {ProductService} from "../../services/product.service";
 import {CategoryService} from "../../services/category.service";
+import {CartService} from "../../services/cart.service";
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,8 @@ export class HomeComponent implements OnInit{
   private _producerSearch : String;
 
   constructor(private productService: ProductService,
-              private categoryService: CategoryService) { }
+              private categoryService: CategoryService,
+              private cartService: CartService) { }
 
 
   get nameSearch(): String {
@@ -73,5 +75,9 @@ export class HomeComponent implements OnInit{
   filterByCategory(searchString : String) {
     this.visibleProducts = this.products.filter(product =>
       product.category.toLowerCase().indexOf(searchString.toLowerCase()) !==-1);
+  }
+
+  addToCart(product: any) {
+    this.cartService.addToCart(product);
   }
 }
