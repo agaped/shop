@@ -1,10 +1,10 @@
 
 .table-container {
   position: relative;
-  top: 100%;
+  top: 80%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: linear-gradient(45deg, #007bff, #80bdff);
+  background: linear-gradient(30deg, #007bff 0%, #99caff 45%, #007bff 100%);
 }
 table {
   width: 100%;
@@ -50,4 +50,22 @@ h3 {
 
 .cart-button {
   width: 50%;
+}
+
+.button-order {
+  float: right;
+  margin-top: 4%;
+  width: 20%;
+  background-color: #3396ff;
+  border-color: #3396ff;
+}
+.button-order:hover{
+  background-color: #006fe6;
+  border-color: #006fe6;
+}
+
+.button-home {
+  width: 90%;
+  height: 15%;
+  text-align: center;
 }

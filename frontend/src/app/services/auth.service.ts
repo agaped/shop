@@ -42,7 +42,7 @@ export class AuthService {
   logout() {
     let options={headers: new HttpHeaders({'Content-Type':'application/json'})};
     this.http.post('http://localhost:8081/api/v1/logout', {}, options)
-      .subscribe(response => console.log("Logged user: "+response));
+      .subscribe(response => console.log("User logged out"));
   }
 
   registerUser(email: string, name: string, surname: string, pass: string) {

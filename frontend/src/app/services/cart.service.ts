@@ -16,12 +16,16 @@ export class CartService {
   public loadCart() {
     this.items=[];
     this.cart = JSON.parse(localStorage.getItem('cart'));
-    for (let i = 0; i < this.cart.length ; i++) {
-      let item : ICartItem = JSON.parse(this.cart[i]);
-      this.items.push({
-        item: item.item,
-        quantity: item.quantity
+    if(this.cart==null){
+      this.items=[];
+    }else {
+      for (let i = 0; i < this.cart.length ; i++) {
+        let item : ICartItem = JSON.parse(this.cart[i]);
+        this.items.push({
+          item: item.item,
+          quantity: item.quantity
         });
+      }
     }
   }
 
@@ -89,4 +93,8 @@ export class CartService {
     }
 
 
+  deleteCart() {
+    localStorage.removeItem("cart");
+    this.loadCart();
+  }
 }
