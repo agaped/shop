@@ -97,4 +97,9 @@ export class CartService {
     localStorage.removeItem("cart");
     this.loadCart();
   }
+
+  isCartValid() {
+    this.loadCart();
+    return this.items.length != 0;
+  }
 }
