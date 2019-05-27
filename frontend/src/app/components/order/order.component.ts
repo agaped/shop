@@ -24,9 +24,16 @@ export class OrderComponent implements OnInit {
     makeOrder(formValues) {
       if (this.cartService.isCartValid()) {
         this.orderService.makeOrder(formValues.payment, formValues.delivery)
+          .subscribe(response => {
+            if (!response) {
+              this.orderInvalid = true;
+            } else {
+              this.router.navigate(['clientOrders']);
+            }
+          });
       } else {
         this.orderInvalid=true;
-        console.log("Order ivalid, cart 0 "+ formValues.payment, formValues.delivery);
+        console.log("Order invalid, cart is empty");
       }
 
     }
