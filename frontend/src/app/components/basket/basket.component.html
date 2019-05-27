@@ -39,7 +39,8 @@
             </tr>
           </table>
 
-        <a href="order" class="btn btn-primary button-order">Zamów</a>
+        <a *ngIf="authService.isAuthenticated()" href="order" class="btn btn-primary button-order">Zamów</a>
+        <a *ngIf="!authService.isAuthenticated()" href="login" class="btn btn-primary button-order">Zaloguj się i zamów</a>
       </div>
 
       <ng-template #emptyCart>

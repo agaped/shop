@@ -25,6 +25,9 @@
             <a *ngIf="authService.isAuthenticated()" class="nav-link" href="home">Welcome {{authService.currentUser.name}}</a>
           </li>
           <li>
+            <a *ngIf="authService.isAuthenticated()" class="nav-link" href="clientOrders">Your Orders</a>
+          </li>
+          <li>
           <button *ngIf="authService.isAuthenticated()" class="nav-link logoutButton" (click)="logout()" >Logout</button>
           </li>
         </ul>
