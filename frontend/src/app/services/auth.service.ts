@@ -19,6 +19,8 @@ export class AuthService {
     return this.http.post('http://localhost:8081/api/v1/login', loginInfo, options)
     .pipe(tap(data => {
       this.currentUser=data;
+      localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
+      console.log("User logged in " +this.currentUser.email);
     }))
       .pipe(catchError(err => {
         return of(false)
@@ -30,19 +32,14 @@ export class AuthService {
   }
 
   checkAuthenticationStatus() {
-    this.http.get('http://localhost:8081/api/v1/currentIdentity')
-      .pipe(tap(data => {
-        if (data instanceof Object) {
-          this.currentUser = data;
-        }
-      }))
-      .subscribe();
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   logout() {
     let options={headers: new HttpHeaders({'Content-Type':'application/json'})};
     this.http.post('http://localhost:8081/api/v1/logout', {}, options)
       .subscribe(response => console.log("User logged out"));
+    localStorage.removeItem('currentUser');
   }
 
   registerUser(email: string, name: string, surname: string, pass: string) {

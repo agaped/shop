@@ -11,10 +11,14 @@ export class AuthGuardService implements CanActivate{
               private authService: AuthService) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if (this.authService.isAuthenticated())
+    this.authService.checkAuthenticationStatus();
+    if (this.authService.isAuthenticated()) {
+      console.log("Guard says authorized to access the page");
       return true;
-
-    this.router.navigate(['login']);
+    } else {
+      this.router.navigate(['login']);
+      console.log("Guard says not authorized to access the page");
       return false;
+    }
   }
 }
