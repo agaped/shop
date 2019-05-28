@@ -2,23 +2,23 @@ package com.onlineshop.shop.dto;
 
 public class CartItemDto {
 
-    private ProductDto product;
+    private ProductDto item;
     private Integer quantity;
 
     public CartItemDto(ProductDto product, Integer quantity) {
-        this.product = product;
+        this.item = product;
         this.quantity = quantity;
     }
 
     public CartItemDto() {
     }
 
-    public ProductDto getProduct() {
-        return product;
+    public ProductDto getItem() {
+        return item;
     }
 
-    public void setProduct(ProductDto product) {
-        this.product = product;
+    public void setItem(ProductDto item) {
+        this.item = item;
     }
 
     public Integer getQuantity() {
@@ -27,5 +27,9 @@ public class CartItemDto {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public String toString() {
+        return item + ", quantity: " + quantity;
     }
 }

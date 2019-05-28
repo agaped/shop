@@ -18,16 +18,16 @@
               <th>Cena</th>
               <th>Ilość</th>
               <th>Razem</th>
-              <th></th>
+              <th>   </th>
             </tr>
-            <tr *ngFor="let product of cart">
-              <td>{{product.item.name}}</td>
-              <td>{{product.item.price | currency: 'PLN '}}</td>
-              <td>{{product.quantity}}</td>
-              <td>{{product.item.price*product.quantity | currency: 'PLN '}}</td>
+            <tr *ngFor="let item of cart">
+              <td>{{item.item.name}}</td>
+              <td>{{item.item.price | currency: 'PLN '}}</td>
+              <td>{{item.quantity}}</td>
+              <td>{{item.item.price*item.quantity | currency: 'PLN '}}</td>
               <td>
-                <button (click)="addToCart(product)" class="btn btn-light cart-button"> + </button>
-                <button (click)="removeFromCart(product)" class="btn btn-dark cart-button"> - </button>
+                <button (click)="addToCart(item)" class="btn btn-light cartItems-button"> + </button>
+                <button (click)="removeFromCart(item)" class="btn btn-dark cartItems-button"> - </button>
               </td>
             </tr>
             <tr>

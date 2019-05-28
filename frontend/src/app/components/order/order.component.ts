@@ -13,6 +13,7 @@ export class OrderComponent implements OnInit {
   payment;
   delivery;
   orderInvalid=false;
+  response;
 
   constructor(private router: Router,
               private cartService:CartService,
@@ -28,7 +29,8 @@ export class OrderComponent implements OnInit {
             if (!response) {
               this.orderInvalid = true;
             } else {
-              this.router.navigate(['clientOrders']);
+              this.saveCart(response);
+              // this.router.navigate(['clientOrders']);
             }
           });
       } else {
@@ -37,6 +39,12 @@ export class OrderComponent implements OnInit {
       }
 
     }
+
+  saveCart(orderId) {
+    this.orderService.saveCart(orderId)
+      .subscribe(response =>{
+      });
+  }
 
   cancel() {
     this.router.navigate(['cart']);

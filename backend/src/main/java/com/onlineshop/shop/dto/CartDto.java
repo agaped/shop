@@ -4,30 +4,30 @@ import java.util.List;
 
 public class CartDto {
 
-    private List<CartItemDto> cart;
-    private Integer orderID;
+    private List<CartItemDto> cartItems;
+    private Integer orderId;
 
-    public CartDto(List<CartItemDto> cart, Integer orderID) {
-        this.cart = cart;
-        this.orderID = orderID;
+    public CartDto(List<CartItemDto> cart, Integer orderId) {
+        this.cartItems = cart;
+        this.orderId = orderId;
     }
 
     public CartDto() {
     }
 
-    public List<CartItemDto> getCart() {
-        return cart;
+    public List<CartItemDto> getCartItems() {
+        return cartItems;
     }
 
-    public void setCart(List<CartItemDto> cart) {
-        this.cart = cart;
+    public void setCartItems(List<CartItemDto> cartItems) {
+        this.cartItems = cartItems;
     }
 
-    public Integer getOrderID() {
-        return orderID;
+    public Integer getOrderId() {
+        return orderId;
     }
 
-    public void setOrderID(Integer orderID) {
-        this.orderID = orderID;
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 }
