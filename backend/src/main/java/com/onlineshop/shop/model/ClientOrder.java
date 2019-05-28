@@ -3,6 +3,7 @@ package com.onlineshop.shop.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.sql.Date;
 
 @Entity
@@ -19,6 +20,7 @@ public class ClientOrder {
     private String payment;
     private String status;
     private String delivery;
+    private BigDecimal total;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "user_id_user", referencedColumnName = "id_user")
@@ -27,11 +29,12 @@ public class ClientOrder {
     public ClientOrder() {
     }
 
-    public ClientOrder(Date date, String payment, String status, String delivery, User user) {
+    public ClientOrder(Date date, String payment, String status, String delivery, BigDecimal total, User user) {
         this.date = date;
         this.payment = payment;
         this.status = status;
         this.delivery = delivery;
+        this.total = total;
         this.user = user;
     }
 
@@ -73,6 +76,14 @@ public class ClientOrder {
 
     public void setDelivery(String delivery) {
         this.delivery = delivery;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
     }
 
     public User getUser() {

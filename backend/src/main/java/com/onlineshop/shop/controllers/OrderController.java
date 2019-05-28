@@ -1,5 +1,6 @@
 package com.onlineshop.shop.controllers;
 
+import com.onlineshop.shop.converters.OrderConverter;
 import com.onlineshop.shop.dto.CartDto;
 import com.onlineshop.shop.dto.CartItemDto;
 import com.onlineshop.shop.dto.OrderDto;
@@ -12,12 +13,11 @@ import com.onlineshop.shop.repositories.OrderRepository;
 import com.onlineshop.shop.repositories.ProductRepository;
 import com.onlineshop.shop.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "api/v1/order")
@@ -30,13 +30,15 @@ public class OrderController {
     private UserRepository userRepository;
     private CartRepository cartRepository;
     private ProductRepository productRepository;
+    private OrderConverter orderConverter;
 
     @Autowired
-    public OrderController(OrderRepository orderRepository, UserRepository userRepository, CartRepository cartRepository, ProductRepository productRepository) {
+    public OrderController(OrderRepository orderRepository, UserRepository userRepository, CartRepository cartRepository, ProductRepository productRepository, OrderConverter orderConverter) {
         this.orderRepository = orderRepository;
         this.userRepository = userRepository;
         this.cartRepository = cartRepository;
         this.productRepository = productRepository;
+        this.orderConverter = orderConverter;
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -47,7 +49,7 @@ public class OrderController {
         date = new Date();
         sqlDate=new java.sql.Date(date.getTime());
         User user = userRepository.findById(order.getUserId()).get();
-        ClientOrder orderToSave = new ClientOrder(sqlDate, order.getPayment(), order.getStatus(), order.getDelivery(), user);
+        ClientOrder orderToSave = new ClientOrder(sqlDate, order.getPayment(), order.getStatus(), order.getDelivery(), order.getTotal(), user);
         orderRepository.save(orderToSave);
 
         return orderToSave.getId();
@@ -64,5 +66,11 @@ public class OrderController {
 
     }
 
+    @RequestMapping(method = RequestMethod.GET, path = "/{id}")
+    public List<OrderDto> getOrdersByUserId(@PathVariable ("id") int id) {
+         return this.orderRepository.findAllByUserId(id).stream()
+                 .map(order-> orderConverter.convert(order))
+                 .collect(Collectors.toList());
+    }
 
 }

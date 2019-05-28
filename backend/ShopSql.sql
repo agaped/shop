@@ -137,6 +137,7 @@ CREATE TABLE IF NOT EXISTS `shop`.`order` (
   `payment` VARCHAR(45) NOT NULL,
   `status` VARCHAR(45) NOT NULL,
   `delivery` VARCHAR(45) NOT NULL,
+  `total` DECIMAL(6,2) NOT NULL,
   `user_id_user` INT(11) NOT NULL,
   PRIMARY KEY (`id_order`, `user_id_user`),
   INDEX `fk_Order_Client1_idx` (`user_id_user` ASC),

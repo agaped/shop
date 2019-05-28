@@ -12,21 +12,20 @@
 
       <div *ngIf="areThereAnyOrders(); else noOrders" class="table-container">
         <h2>Twoje zamówienia: </h2>
-        <table>
-          <tr>
-            <th>Data</th>
-            <th>Płatność</th>
-            <th>Dostawa</th>
-            <th>Razem</th>
-          </tr>
-          <tr *ngFor="let order of orders">
-            <td>{{order.date}}</td>
-            <td>{{order.payment}}</td>
-            <td>{{item.delivery}}</td>
-            <td>{{order.total | currency: 'PLN '}}</td>
-          </tr>
-        </table>
-
+        <ul class="responsive-table">
+          <li class="table-header">
+            <div class="col col-1">Data</div>
+            <div class="col col-2">Płatność</div>
+            <div class="col col-3">Dostawa</div>
+            <div class="col col-4">Razem</div>
+          </li>
+          <li class="table-row" *ngFor="let order of orders">
+            <div class="col col-1" data-label="Data">{{order.date}}</div>
+            <div class="col col-2" data-label="Płatnośće">{{order.payment}}</div>
+            <div class="col col-3" data-label="Dostawa">{{order.delivery}}</div>
+            <div class="col col-4" data-label="Razem">{{order.total | currency: 'PLN '}}</div>
+          </li>
+        </ul>
       </div>
 
       <ng-template #noOrders>

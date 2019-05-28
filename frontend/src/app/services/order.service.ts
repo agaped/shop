@@ -44,4 +44,8 @@ export class OrderService {
         return of(false)
       }))
   }
+
+  getOrders() {
+    return this.http.get('http://localhost:8081/api/v1/order/'+this.authService.currentUser.id)
+  }
 }
