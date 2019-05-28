@@ -11,10 +11,10 @@
     <div class="col-lg-9">
 
       <div class="card" *ngIf='product'>
-        <a href="item/{{product.id}}"><img class="card-img" src="{{product.url}}" alt=""></a>
+        <a href="product/{{product.id}}"><img class="card-img" src="{{product.url}}" alt=""></a>
         <div class="card-body">
           <h4 class="card-title">
-            <a href="#">{{product.name}}</a>
+            <a href="product/{{product.id}}">{{product.name}}</a>
           </h4>
           <button type="button" class="btn btn-info" style="float: right;" (click)="addToCart(product)">Dodaj do koszyka</button>
           <h5>Producent: {{product.producer}}</h5>
