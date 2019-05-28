@@ -43,10 +43,10 @@
           <div class="row margines">
             <div class="col-lg-4 col-md-6 mb-4" *ngFor="let item of visibleProducts">
               <div class="card h-100">
-                <a href="item/{{item.id}}"><img class="card-img-top" src="{{item.url}}" alt=""></a>
+                <a href="product/{{item.id}}"><img class="card-img-top" src="{{item.url}}" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
-                    <a href="item/{{item.id}}">{{item.name}}</a>
+                    <a href="product/{{item.id}}">{{item.name}}</a>
                   </h4>
                   <h5>Producent: {{item.producer}}</h5>
                   <h5>{{item.price | currency: 'PLN '}}</h5>
@@ -67,10 +67,10 @@
           <div class="row margines">
             <div class="col-lg-4 col-md-6 mb-4" *ngFor="let item of products">
               <div class="card h-100">
-                <a href="item/{{item.id}}"><img class="card-img-top" src="{{item.url}}" alt=""></a>
+                <a href="product/{{item.id}}"><img class="card-img-top" src="{{item.url}}" alt=""></a>
                 <div class="card-body">
                   <h4 class="card-title">
-                    <a href="item/{{item.id}}">{{item.name}}</a>
+                    <a href="product/{{item.id}}">{{item.name}}</a>
                   </h4>
                   <h5>Producent: {{item.producer}}</h5>
                   <h5>{{item.price | currency: 'PLN '}}</h5>

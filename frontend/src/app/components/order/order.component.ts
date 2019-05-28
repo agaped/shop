@@ -43,6 +43,8 @@ export class OrderComponent implements OnInit {
   saveCart(orderId) {
     this.orderService.saveCart(orderId)
       .subscribe(response =>{
+        localStorage.removeItem("cart");
+
       });
   }
 
