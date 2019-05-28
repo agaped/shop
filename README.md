@@ -16,8 +16,8 @@ with new username and password
 2. cd shop
 3. mvn clean install
 4. cd backend
-5. mvn spring-boot:run (app runs on port 8081 by default, to change it add a flag 
--Dserver.port=XXXX)
+5. mvn spring-boot:run (app runs on port 8081 by default)
+6. navigate to: http://localhost:8081/home
 
 ## Technology used:
 * Maven
