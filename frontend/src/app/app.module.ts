@@ -12,6 +12,10 @@ import {FormsModule} from "@angular/forms";
 import { BasketComponent } from './components/basket/basket.component';
 import { LoginComponent } from './components/login/login.component';
 import {AuthService} from "./services/auth.service";
+import { OrderComponent } from './components/order/order.component';
+import { AuthGuardService} from "./services/auth-guard.service";
+import {OrderService} from "./services/order.service";
+import { ClientordersComponent } from './components/clientorders/clientorders.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,9 @@ import {AuthService} from "./services/auth.service";
     HomeComponent,
     ProductComponent,
     BasketComponent,
-    LoginComponent
+    LoginComponent,
+    OrderComponent,
+    ClientordersComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +33,7 @@ import {AuthService} from "./services/auth.service";
     AppRoutingModule,
     FormsModule
   ],
-  providers: [ProductService, CategoryService, AuthService],
+  providers: [ProductService, CategoryService, AuthService, AuthGuardService, OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,42 +4,47 @@
     <div class="col-lg-3">
 
       <h1 class="my-4">Biker Shop</h1>
-      <a href="home" class="btn btn-light button-home">Powrót do strony głównej</a>
+      <a href="home" class="btn btn-light">Powrót do strony głównej</a>
 
     </div>
 
-    <div class="col-lg-9">
+    <div class="col-lg-9 margines">
 
+      <h2 class="margines">KOSZYK: </h2>
       <div *ngIf="isCartValid(); else emptyCart" class="table-container">
-        <h2>KOSZYK: </h2>
-          <table>
-            <tr>
-              <th>Produkt</th>
-              <th>Cena</th>
-              <th>Ilość</th>
-              <th>Razem</th>
-              <th></th>
-            </tr>
-            <tr *ngFor="let product of cart">
-              <td>{{product.item.name}}</td>
-              <td>{{product.item.price | currency: 'PLN '}}</td>
-              <td>{{product.quantity}}</td>
-              <td>{{product.item.price*product.quantity | currency: 'PLN '}}</td>
-              <td>
-                <button (click)="addToCart(product)" class="btn btn-light cart-button"> + </button>
-                <button (click)="removeFromCart(product)" class="btn btn-dark cart-button"> - </button>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td><h3>Razem</h3></td>
-              <td><h3>{{getTotal() | currency: 'PLN '}}</h3></td>
-              <td></td>
-            </tr>
+          <table class="table table-responsive">
+            <thead class=" table-primary">
+              <tr>
+                <th>Produkt</th>
+                <th>Cena</th>
+                <th>Ilość</th>
+                <th>Razem</th>
+                <th> </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of cart" class="">
+                <td>{{item.item.name}}</td>
+                <td>{{item.item.price | currency: 'PLN '}}</td>
+                <td>{{item.quantity}}</td>
+                <td>{{item.item.price*item.quantity | currency: 'PLN '}}</td>
+                <td>
+                  <button (click)="addToCart(item)" class="btn btn-primary btn-add cart-button"> + </button>
+                  <button (click)="removeFromCart(item)" class="btn btn-dark cart-button"> - </button>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td><h3>Razem</h3></td>
+                <td><h3>{{getTotal() | currency: 'PLN '}}</h3></td>
+                <td></td>
+              </tr>
+            </tbody>
           </table>
 
-        <a href="order" class="btn btn-primary button-order">Zamów</a>
+        <a *ngIf="authService.isAuthenticated()" href="order" class="btn btn-primary button-order">Zamów</a>
+        <a *ngIf="!authService.isAuthenticated()" href="login" class="btn btn-primary button-order">Zaloguj się i zamów</a>
       </div>
 
       <ng-template #emptyCart>

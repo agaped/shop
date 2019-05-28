@@ -1,0 +1,84 @@
+
+<div class="container margines">
+  <div class="row">
+
+    <div class="col-lg-3">
+
+      <h1 class="my-4">Biker Shop</h1>
+      <a href="home" class="btn btn-light button-home">Powrót do strony głównej</a>
+
+    </div>
+
+    <div class="col-lg-9 margines">
+      <div *ngIf="orderInvalid" class="alert alert-danger">Zamówienie nie zostało złożone, brak produktów w koszyku!</div>
+
+        <h2 class="margines">Złóż zamówienie</h2>
+        <hr>
+
+        <form #orderForm ="ngForm" (ngSubmit)="makeOrder(orderForm.value)">
+
+          <fieldset class="form-group">
+            <div class="row">
+              <legend class="col-form-label col-sm-4 pt-0">Wybierz metodę płatności:</legend>
+              <div class="col-sm-8 margines">
+                <div class="form-check">
+                  <input (ngModel)="payment" class="form-check-input" type="radio" name="payment" id="payment1" value="Platnosc karta" required>
+                  <label class="form-check-label" for="payment1">
+                    Płatność kartą
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input (ngModel)="payment" class="form-check-input" type="radio" name="payment" id="payment2" value="Platnosc gotówka przy odbiorze" required>
+                  <label class="form-check-label" for="payment2">
+                    Płatność gotówką przy odbiorze
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input (ngModel)="payment" class="form-check-input" type="radio" name="payment" id="payment3" value="Szybki przelew online" required>
+                  <label class="form-check-label" for="payment3">
+                    Szybki przelew online
+                  </label>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-group">
+            <div class="row">
+            <legend class="col-form-label col-sm-4 pt-0">Wybierz sposób dostawy:</legend>
+            <div class="col-sm-8 margines">
+              <div class="form-check">
+                <input (ngModel)="delivery" class="form-check-input" type="radio" name="delivery" id="delivery1" value="Odbiór w sklepie" required>
+                <label class="form-check-label" for="delivery1">
+                  Odbiór w sklepie
+                </label>
+              </div>
+              <div class="form-check">
+                <input (ngModel)="delivery" class="form-check-input" type="radio" name="delivery" id="delivery2" value="Odbiór w punkcie partnerskim" required>
+                <label class="form-check-label" for="delivery2">
+                  Odbiór w punkcie partnerskim
+                </label>
+              </div>
+            </div>
+            </div>
+          </fieldset>
+
+          <div class="alert alert-primary" *ngIf="orderForm.invalid" >Płatność i dostawa są wymagane</div>
+          <button [disabled]="orderForm.invalid" type="submit" class="btn btn-primary loginButton margines">Order</button>
+          <button type="button" (click)="cancel()" class="btn btn-danger loginButton margines" style="float: right">Cancel</button>
+
+        </form>
+
+    <!--<div class="col-lg-9">-->
+    </div>
+
+  <!--<div class="row">-->
+  </div>
+
+<!--<div class="container margines">?-->
+</div>
+
+
+
+
+
