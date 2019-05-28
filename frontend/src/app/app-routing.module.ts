@@ -6,6 +6,7 @@ import {BasketComponent} from "./components/basket/basket.component";
 import {LoginComponent} from "./components/login/login.component";
 import {OrderComponent} from "./components/order/order.component";
 import {AuthGuardService} from "./services/auth-guard.service";
+import {ClientordersComponent} from "./components/clientorders/clientorders.component";
 
 const routes: Routes = [
   {
@@ -22,6 +23,9 @@ const routes: Routes = [
   },
   {
     path: 'order', component: OrderComponent, canActivate:[AuthGuardService]
+  },
+  {
+    path: 'clientOrders', component: ClientordersComponent, canActivate:[AuthGuardService]
   }
 ];
 

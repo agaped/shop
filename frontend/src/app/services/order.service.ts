@@ -18,7 +18,7 @@ export class OrderService {
   test;
 
   makeOrder(payment: String, delivery: String) {
-    let orderInfo={payment:payment, status:'nowe', delivery:delivery, userId:this.authService.currentUser.id};
+    let orderInfo={payment:payment, status:'nowe', delivery:delivery, total:this.cartService.getTotal(), userId:this.authService.currentUser.id};
     let options={headers: new HttpHeaders({'Content-Type':'application/json'})};
     console.log(orderInfo);
 

@@ -15,6 +15,7 @@ import {AuthService} from "./services/auth.service";
 import { OrderComponent } from './components/order/order.component';
 import { AuthGuardService} from "./services/auth-guard.service";
 import {OrderService} from "./services/order.service";
+import { ClientordersComponent } from './components/clientorders/clientorders.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {OrderService} from "./services/order.service";
     ProductComponent,
     BasketComponent,
     LoginComponent,
-    OrderComponent
+    OrderComponent,
+    ClientordersComponent
   ],
   imports: [
     BrowserModule,

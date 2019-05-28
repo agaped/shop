@@ -1,0 +1,42 @@
+<div class="container margines">
+  <div class="row">
+
+    <div class="col-lg-3">
+
+      <h1 class="my-4">Biker Shop</h1>
+      <a href="home" class="btn btn-light button-home">Powrót do strony głównej</a>
+
+    </div>
+
+    <div class="col-lg-9">
+
+      <div *ngIf="areThereAnyOrders(); else noOrders" class="table-container">
+        <h2>Twoje zamówienia: </h2>
+        <table>
+          <tr>
+            <th>Data</th>
+            <th>Płatność</th>
+            <th>Dostawa</th>
+            <th>Razem</th>
+          </tr>
+          <tr *ngFor="let order of orders">
+            <td>{{order.date}}</td>
+            <td>{{order.payment}}</td>
+            <td>{{item.delivery}}</td>
+            <td>{{order.total | currency: 'PLN '}}</td>
+          </tr>
+        </table>
+
+      </div>
+
+      <ng-template #noOrders>
+        <div class="alert alert-info">Nie masz jeszcze żadnych zamówień</div>
+      </ng-template>
+
+
+      <!--<div class="col-lg-9">-->
+    </div>
+    <!--row-->
+  </div>
+  <!--container margines-->
+</div>

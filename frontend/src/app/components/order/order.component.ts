@@ -30,7 +30,7 @@ export class OrderComponent implements OnInit {
               this.orderInvalid = true;
             } else {
               this.saveCart(response);
-              // this.router.navigate(['clientOrders']);
+              this.router.navigate(['clientOrders']);
             }
           });
       } else {

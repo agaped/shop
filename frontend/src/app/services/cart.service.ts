@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {IProduct} from "../models/product.model";
 import {ICartItem} from "../models/cartItem.model";
+import {forEach} from "@angular/router/src/utils/collection";
 
 
 @Injectable({
@@ -101,5 +102,14 @@ export class CartService {
   isCartValid() {
     this.loadCart();
     return this.items.length != 0;
+  }
+
+  getTotal() {
+    this.loadCart();
+    let total=0;
+    for (let item of this.items) {
+      total += item.item.price * item.quantity;
+    }
+    return total;
   }
 }
