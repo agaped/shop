@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {IProduct} from "../models/product.model";
 import {ICartItem} from "../models/cartItem.model";
-import {forEach} from "@angular/router/src/utils/collection";
+import {Router} from "@angular/router";
 
 
 @Injectable({
@@ -12,7 +12,7 @@ export class CartService {
   public cart;
   public items;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   public loadCart() {
     this.items=[];
@@ -59,8 +59,9 @@ export class CartService {
         this.saveToLocalStorage();
       }
     }
-    this.loadCart()
+    this.loadCart();
     console.log("Added to cart: " + product.name);
+    this.router.navigate(['cart']);
     }
 
   private saveToCart(item: ICartItem) {
