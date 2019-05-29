@@ -34,7 +34,10 @@ public class CategoryController {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/{id}")
-    public CategoryDto getProduct(@PathVariable("id") int id) {
+    public CategoryDto getCategory(@PathVariable("id") int id) {
+        if(!categoryRepository.findById(id).isPresent()){
+            throw new IllegalArgumentException("Category of given id does not exist "+id);
+        }
         return categoryConverter.convert(categoryRepository.getOne(id));
     }
 }

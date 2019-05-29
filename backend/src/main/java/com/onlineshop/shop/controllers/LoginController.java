@@ -28,25 +28,22 @@ public class LoginController {
 
     @RequestMapping(method = RequestMethod.POST, path = "/login")
     public UserDto login(@RequestBody @NotNull LoginFormDto loginFormDto) {
-        if (checkIfEmailExist(loginFormDto.getUsername())) {
-            User user = userRepository.findByEmail(loginFormDto.getUsername()).get();
-            return authorize(loginFormDto, user);
-
-        }else{
+        if (!emailExist(loginFormDto.getUsername())) {
             throw new IllegalArgumentException("Email does not exist");
         }
+        User user = userRepository.findByEmail(loginFormDto.getUsername()).get();
+        return authorize(loginFormDto, user);
     }
 
     private UserDto authorize(@RequestBody @NotNull LoginFormDto loginFormDto, User user) {
-        if (user.getPassword().equals(loginFormDto.getPassword())) {
-            loggedUser = userConverter.convert(user);
-        }else{
+        if (!user.getPassword().equals(loginFormDto.getPassword())) {
             throw new IllegalArgumentException("Wrong password for "+user.getEmail());
         }
+        loggedUser = userConverter.convert(user);
         return loggedUser;
     }
 
-    private boolean checkIfEmailExist(String email) {
+    private boolean emailExist(String email) {
         return userRepository.findByEmail(email).isPresent();
     }
 
@@ -54,9 +51,8 @@ public class LoginController {
     public UserDto checkLoginStatus() {
         if (null == this.loggedUser) {
             throw new RuntimeException("Nobody logged in");
-        }else {
-            return this.loggedUser;
         }
+        return this.loggedUser;
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/logout")

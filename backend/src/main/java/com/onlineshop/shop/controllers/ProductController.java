@@ -25,15 +25,16 @@ public class ProductController {
 
     @RequestMapping(method = RequestMethod.GET)
     public List<ProductDto> getAllProducts() {
-
-        List<ProductDto> products = productRepository.findAll().stream()
+        return productRepository.findAll().stream()
                 .map(product -> productConverter.convert(product))
                 .collect(Collectors.toList());
-        return products;
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/{id}")
     public ProductDto getProduct(@PathVariable("id") int id) {
+        if(!productRepository.findById(id).isPresent()){
+            throw new IllegalArgumentException("Product of given id does not exist");
+        }
         Product one = productRepository.getOne(id);
         return productConverter.convert(one);
     }

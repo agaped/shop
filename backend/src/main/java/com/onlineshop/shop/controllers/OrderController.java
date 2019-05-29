@@ -15,6 +15,7 @@ import com.onlineshop.shop.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,9 +43,9 @@ public class OrderController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public int makeOrder(@RequestBody OrderDto order) {
+    public int makeOrder(@RequestBody @NotNull OrderDto order) {
         if (!userRepository.findById(order.getUserId()).isPresent()) {
-            throw new IllegalArgumentException("User does not exist" + order.getUserId());
+            throw new IllegalArgumentException("User does not exist " + order.getUserId());
         }
         date = new Date();
         sqlDate=new java.sql.Date(date.getTime());
@@ -56,7 +57,7 @@ public class OrderController {
     }
 
     @RequestMapping(method = RequestMethod.POST, path = "/cart")
-    public void saveCart(@RequestBody CartDto cart) {
+    public void saveCart(@RequestBody @NotNull CartDto cart) {
 
         for (CartItemDto cartItem: cart.getCartItems()) {
             ClientOrder clientOrder = orderRepository.findById(cart.getOrderId()).get();
@@ -68,6 +69,9 @@ public class OrderController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/{id}")
     public List<OrderDto> getOrdersByUserId(@PathVariable ("id") int id) {
+        if(!userRepository.findById(id).isPresent()){
+            throw new IllegalArgumentException("User does not exist");
+        }
          return this.orderRepository.findAllByUserId(id).stream()
                  .map(order-> orderConverter.convert(order))
                  .collect(Collectors.toList());
