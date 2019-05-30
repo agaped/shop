@@ -7,6 +7,7 @@ import {LoginComponent} from "./components/login/login.component";
 import {OrderComponent} from "./components/order/order.component";
 import {AuthGuardService} from "./services/auth-guard.service";
 import {ClientordersComponent} from "./components/clientorders/clientorders.component";
+import {NotfoundComponent} from "./components/notfound/notfound.component";
 
 const routes: Routes = [
   {
@@ -26,6 +27,12 @@ const routes: Routes = [
   },
   {
     path: 'clientOrders', component: ClientordersComponent, canActivate:[AuthGuardService]
+  },
+  {
+    path: '404', component: NotfoundComponent
+  },
+  {
+    path: '**', redirectTo: '/404'
   }
 ];
 
