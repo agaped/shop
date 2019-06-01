@@ -36,7 +36,7 @@ export class OrderService {
     let cartInfo={cartItems:this.cartService.items, orderId:orderId};
     let options={headers: new HttpHeaders({'Content-Type':'application/json'})};
 
-    return this.http.post('http://localhost:8081/api/v1/order/cart', cartInfo, options)
+    return this.http.post('http://localhost:8081/api/v1/cart', cartInfo, options)
       .pipe(tap(data => {
         console.log("Cart info sent");
       }))
