@@ -8,6 +8,9 @@ import com.onlineshop.shop.model.Product;
 import com.onlineshop.shop.repositories.CartRepository;
 import com.onlineshop.shop.repositories.OrderRepository;
 import com.onlineshop.shop.repositories.ProductRepository;
+import com.onlineshop.shop.services.CartService;
+import com.onlineshop.shop.services.OrderService;
+import com.onlineshop.shop.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,26 +23,15 @@ import javax.validation.constraints.NotNull;
 @RequestMapping(path = "api/v1/cart")
 public class CartController {
 
-    private CartRepository cartRepository;
-    private ProductRepository productRepository;
-    private OrderRepository orderRepository;
+    private CartService cartService;
 
     @Autowired
-    public CartController(CartRepository cartRepository, ProductRepository productRepository,
-                          OrderRepository orderRepository) {
-        this.cartRepository = cartRepository;
-        this.productRepository = productRepository;
-        this.orderRepository = orderRepository;
+    public CartController(CartService cartService) {
+        this.cartService = cartService;
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public void saveCart(@RequestBody @NotNull CartDto cart) {
-
-        for (CartItemDto cartItem: cart.getCartItems()) {
-            ClientOrder clientOrder = orderRepository.findById(cart.getOrderId()).get();
-            Product product = productRepository.findById(cartItem.getItem().getId()).get();
-            cartRepository.save(new Cart(cartItem.getQuantity(), product, clientOrder));
-        }
-
+        cartService.saveCart(cart);
     }
 }
