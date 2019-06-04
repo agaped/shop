@@ -3,20 +3,20 @@
     <div class="col-lg-3">
 
       <h1 class="my-4">Biker Shop</h1>
-      <p>Search by categories:</p>
+      <p>Wyszukaj po kategoriach:</p>
       <a href="home" class="list-group-item">wszystkie</a>
       <div class="list-group" *ngFor="let category of categories">
         <a href="home" class="list-group-item" (click)="!!filterByCategory(category.name)">{{category.name}}</a>
       </div>
       <form class="margines-form">
         <div class="form-group">
-          <label for="nameInput">Search by name:</label>
-          <input class="form-control" id="nameInput" type="text" placeholder="Enter item name"
+          <label for="nameInput">Wyszukaj po nazwie:</label>
+          <input class="form-control" id="nameInput" type="text" placeholder="Wpisz nazwę produktu"
                  [(ngModel)]="nameSearch" [ngModelOptions]="{standalone: true}"/>
         </div>
         <div class="form-group">
-          <label for="producerInput">Search by producer:</label>
-          <input class="form-control" id="producerInput" type="text" placeholder="Enter producer"
+          <label for="producerInput">Wyszukaj po producencie:</label>
+          <input class="form-control" id="producerInput" type="text" placeholder="Wpisz producenta"
                  [(ngModel)]="producerSearch" [ngModelOptions]="{standalone: true}"/>
         </div>
       </form>

@@ -1,59 +1,59 @@
 <div class="container margines">
 
   <h1>Biker Shop</h1>
-  <div *ngIf="loginInfo" class="alert alert-info">Registered successfully! You can now log in</div>
+  <div *ngIf="loginInfo" class="alert alert-info">Pomyślnie zarejestrowano! Możesz sie zalogować</div>
 
   <div class="row margines">
 
     <div class="col-md-6">
-      <h2 class="margines">Login</h2>
+      <h2 class="margines">Logowanie</h2>
       <hr>
 
       <form #loginForm ="ngForm" (ngSubmit)="login(loginForm.value)" autocomplete="off" novalidate>
         <div class="form-group" >
-          <label for="userEmail">User Email:</label>
+          <label for="userEmail">Adres Email:</label>
           <em *ngIf="loginForm.controls.userName?.invalid && (loginForm.controls.userName?.touched
             || mouseoverLogin)">Required</em>
           <input (ngModel)="userName" name="userName" required id="userEmail" type="text" class="form-control"
-                 placeholder="Enter username" />
+                 placeholder="Wpisz email" />
         </div>
         <div class="form-group" >
-          <label for="password">Password:</label>
+          <label for="password">Hasło:</label>
           <em *ngIf="loginForm.controls.password?.invalid && (loginForm.controls.userName?.touched
             || mouseoverLogin)">Required</em>
           <input (ngModel)="password" name="password" required id="password" type="password" class="form-control"
-                 placeholder="Enter password" />
+                 placeholder="Wpisz hasło" />
         </div>
 
         <span (mouseenter)="mouseoverLogin=true" (mouseleave)="mouseoverLogin=false">
-          <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary loginButton">Login</button>
+          <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary loginButton">Zaloguj</button>
         </span>
-        <button type="button" (click)="cancel()" class="btn btn-danger loginButton" style="float: right">Cancel</button>
+        <button type="button" (click)="cancel()" class="btn btn-danger loginButton" style="float: right">Zrezygnuj</button>
       </form>
 
       <br>
-      <div *ngIf="loginInvalid" class="alert alert-danger">Invalid login info</div>
+      <div *ngIf="loginInvalid" class="alert alert-danger">Niepoprawne dane logowania</div>
     </div>
 
     <div class="col-md-6">
-      <h2 class="margines">Register</h2>
+      <h2 class="margines">Rejestracja</h2>
       <hr>
 
       <form #registerForm ="ngForm" (ngSubmit)="registerUser(registerForm.value)" autocomplete="off" novalidate>
         <div class="form-group" >
-          <label for="registerName">Name:</label>
+          <label for="registerName">Imię:</label>
           <em *ngIf="registerForm.controls.name?.invalid && (registerForm.controls.name?.touched
           || mouseoverRegister)">Required</em>
           <input (ngModel)="name" name="name" required id="registerName" type="text" class="form-control"
-                 placeholder="Enter name" />
+                 placeholder="Wpisz imię" />
         </div>
 
         <div class="form-group" >
-          <label for="registerSurname">Surname:</label>
+          <label for="registerSurname">Nazwisko:</label>
           <em *ngIf="registerForm.controls.surname?.invalid && (registerForm.controls.surname?.touched
           || mouseoverRegister)">Required</em>
           <input (ngModel)="surname" name="surname" required id="registerSurname" type="text" class="form-control"
-                 placeholder="Enter surname" />
+                 placeholder="Wpisz nazwisko" />
         </div>
 
         <div class="form-group" >
@@ -61,25 +61,25 @@
           <em *ngIf="registerForm.controls.email?.invalid && (registerForm.controls.email?.touched
           || mouseoverRegister)">Required</em>
           <input (ngModel)="email" name="email" required id="registerEmail" type="email" class="form-control"
-                 placeholder="Enter email" />
+                 placeholder="Wpisz email" />
         </div>
 
         <div class="form-group" >
-          <label for="registerPassword">Password:</label>
+          <label for="registerPassword">Hasło:</label>
           <em *ngIf="registerForm.controls.pass?.invalid && (registerForm.controls.pass?.touched
           || mouseoverRegister)">Required</em>
           <input (ngModel)="pass" name="pass" required id="registerPassword" type="password" class="form-control"
-                 placeholder="Enter password" />
+                 placeholder="Wpisz hasło" />
         </div>
 
         <span (mouseenter)="mouseoverRegister=true" (mouseleave)="mouseoverRegister=false">
-        <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary loginButton">Register</button>
+        <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary loginButton">Zarejestruj</button>
         </span>
-        <button type="button" (click)="cancel()" class="btn btn-danger loginButton" style="float: right">Cancel</button>
+        <button type="button" (click)="cancel()" class="btn btn-danger loginButton" style="float: right">Zrezygnuj</button>
       </form>
 
       <br>
-      <div *ngIf="registerInvalid" class="alert alert-danger">Invalid registration info</div>
+      <div *ngIf="registerInvalid" class="alert alert-danger">Niepoprawne dane rejestracji</div>
     </div>
 
       <!--<div class="row">-->

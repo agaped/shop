@@ -1,41 +1,36 @@
 package com.onlineshop.shop.controllers;
 
-import com.onlineshop.shop.converters.ProductConverter;
 import com.onlineshop.shop.dto.ProductDto;
-import com.onlineshop.shop.model.Product;
-import com.onlineshop.shop.repositories.ProductRepository;
+import com.onlineshop.shop.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/v1/products")
 public class ProductController {
 
-    private ProductRepository productRepository;
-    private ProductConverter productConverter;
+    private ProductService productService;
 
     @Autowired
-    public ProductController(ProductRepository productRepository, ProductConverter productConverter) {
-        this.productRepository = productRepository;
-        this.productConverter = productConverter;
+    public ProductController(ProductService productService) {
+        this.productService = productService;
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public List<ProductDto> getAllProducts() {
-        return productRepository.findAll().stream()
-                .map(product -> productConverter.convert(product))
-                .collect(Collectors.toList());
+        return productService.getAllProducts();
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/{id}")
     public ProductDto getProduct(@PathVariable("id") int id) {
-        if(!productRepository.findById(id).isPresent()){
+        if(!productService.productExists(id)){
             throw new IllegalArgumentException("Product of given id does not exist");
         }
-        Product one = productRepository.getOne(id);
-        return productConverter.convert(one);
+        return productService.getConvertedProduct(id);
     }
 }
