@@ -3,6 +3,7 @@ package com.onlineshop.shop.controllers;
 import com.onlineshop.shop.dto.LoginFormDto;
 import com.onlineshop.shop.dto.RegisterFormDto;
 import com.onlineshop.shop.dto.UserDto;
+import com.onlineshop.shop.exceptions.ItemNotFoundException;
 import com.onlineshop.shop.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,7 @@ public class LoginController {
     @RequestMapping(method = RequestMethod.POST, path = "/login")
     public UserDto login(@RequestBody @NotNull LoginFormDto loginFormDto) {
         if (!userService.emailExist(loginFormDto.getUsername())) {
-            throw new IllegalArgumentException("Email does not exist");
+            throw new ItemNotFoundException("Email does not exist");
         }
         return userService.authorize(loginFormDto);
     }

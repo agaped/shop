@@ -1,6 +1,7 @@
 package com.onlineshop.shop.controllers;
 
 import com.onlineshop.shop.dto.OrderDto;
+import com.onlineshop.shop.exceptions.ItemNotFoundException;
 import com.onlineshop.shop.services.OrderService;
 import com.onlineshop.shop.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class OrderController {
     @RequestMapping(method = RequestMethod.POST)
     public int makeOrder(@RequestBody @NotNull OrderDto order) {
         if (!userService.userExists(order.getUserId())) {
-            throw new IllegalArgumentException("User does not exist " + order.getUserId());
+            throw new ItemNotFoundException("User does not exist " + order.getUserId());
         }
         return orderService.makeOrder(order);
     }
@@ -33,7 +34,7 @@ public class OrderController {
     @RequestMapping(method = RequestMethod.GET, path = "/{id}")
     public List<OrderDto> getOrdersByUserId(@PathVariable ("id") int id) {
         if(!userService.userExists(id)){
-            throw new IllegalArgumentException("User does not exist");
+            throw new ItemNotFoundException("User does not exist "+id);
         }
         return orderService.getConvertedOrdersByUserId(id);
     }

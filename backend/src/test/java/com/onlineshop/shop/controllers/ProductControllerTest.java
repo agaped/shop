@@ -1,6 +1,7 @@
 package com.onlineshop.shop.controllers;
 
 import com.onlineshop.shop.dto.ProductDto;
+import com.onlineshop.shop.exceptions.ItemNotFoundException;
 import com.onlineshop.shop.services.ProductService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -63,14 +64,14 @@ public class ProductControllerTest {
     }
 
     @Test
-    @ExceptionHandler(IllegalArgumentException.class)
+    @ExceptionHandler(ItemNotFoundException.class)
     public void getNonExistingProduct() throws Exception {
         int productId=1;
         ProductDto product = new ProductDto();
         product.setId(productId);
 
         when(productService.productExists(product.getId())).thenReturn(false);
-        when(productService.getConvertedProduct(productId)).thenThrow(IllegalArgumentException.class);
+        when(productService.getConvertedProduct(productId)).thenThrow(ItemNotFoundException.class);
 
         this.mockMvc.perform(get("http://localhost:8081/api/v1/products/" + productId))
                 .andExpect(status().isNotFound());

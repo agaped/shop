@@ -1,6 +1,7 @@
 package com.onlineshop.shop.controllers;
 
 import com.onlineshop.shop.dto.ProductDto;
+import com.onlineshop.shop.exceptions.ItemNotFoundException;
 import com.onlineshop.shop.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,7 +30,7 @@ public class ProductController {
     @RequestMapping(method = RequestMethod.GET, path = "/{id}")
     public ProductDto getProduct(@PathVariable("id") int id) {
         if(!productService.productExists(id)){
-            throw new IllegalArgumentException("Product of given id does not exist");
+            throw new ItemNotFoundException("Product of given id does not exist "+id);
         }
         return productService.getConvertedProduct(id);
     }
