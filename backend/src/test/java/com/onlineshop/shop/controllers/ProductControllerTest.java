@@ -33,8 +33,9 @@ public class ProductControllerTest {
 
     @Test
     public void getAllProducts() throws Exception {
-        ProductDto product=new ProductDto();
-        product.setId(1);
+        ProductDto product=new ProductDto.Builder()
+                .id(1)
+                .build();
         List<ProductDto> allProducts=new ArrayList<>();
         allProducts.add(product);
 
@@ -49,31 +50,34 @@ public class ProductControllerTest {
 
     @Test
     public void getExistingProduct() throws Exception {
-        int productId=1;
-        ProductDto product = new ProductDto();
-        product.setId(productId);
-        product.setName("Women Bike");
+        int id=1;
+        String name="Woman bike";
+        ProductDto product = new ProductDto.Builder()
+                .id(id)
+                .name(name)
+                .build();
 
-        when(productService.productExists(product.getId())).thenReturn(true);
-        when(productService.getConvertedProduct(productId)).thenReturn(product);
+        when(productService.productExists(id)).thenReturn(true);
+        when(productService.getConvertedProduct(id)).thenReturn(product);
 
-        this.mockMvc.perform(get("http://localhost:8081/api/v1/products/" + productId))
+        this.mockMvc.perform(get("http://localhost:8081/api/v1/products/" + id))
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("name", is(product.getName())));
+                .andExpect(jsonPath("name", is(name)));
     }
 
     @Test
     @ExceptionHandler(ItemNotFoundException.class)
     public void getNonExistingProduct() throws Exception {
-        int productId=1;
-        ProductDto product = new ProductDto();
-        product.setId(productId);
+        int id=1;
+        ProductDto product = new ProductDto.Builder()
+                .id(id)
+                .build();
 
         when(productService.productExists(product.getId())).thenReturn(false);
-        when(productService.getConvertedProduct(productId)).thenThrow(ItemNotFoundException.class);
+        when(productService.getConvertedProduct(id)).thenThrow(ItemNotFoundException.class);
 
-        this.mockMvc.perform(get("http://localhost:8081/api/v1/products/" + productId))
+        this.mockMvc.perform(get("http://localhost:8081/api/v1/products/" + id))
                 .andExpect(status().isNotFound());
     }
 }
