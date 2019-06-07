@@ -33,9 +33,10 @@ public class LoginControllerTest {
     @Test
     public void login_whenUserExists() throws Exception {
         String email = "email";
-        UserDto user = new UserDto();
-        user.setEmail(email);
-        user.setId(23);
+        UserDto user = new UserDto.Builder()
+                .id(1)
+                .email(email)
+                .build();
 
         when(userService.emailExist(email)).thenReturn(true);
         when(userService.authorize(any(LoginFormDto.class))).thenReturn(user);
@@ -84,9 +85,10 @@ public class LoginControllerTest {
 
     @Test
     public void registerUser() throws Exception {
-        UserDto user = new UserDto();
-        user.setName("Jan");
-        user.setId(11);
+        UserDto user = new UserDto.Builder()
+                .id(12)
+                .name("Jan")
+                .build();
 
         when(userService.registerUser(any(RegisterFormDto.class))).thenReturn(user);
 

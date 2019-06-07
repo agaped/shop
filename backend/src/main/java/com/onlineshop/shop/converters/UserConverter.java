@@ -10,12 +10,11 @@ public class UserConverter implements Converter<User, UserDto> {
     @Override
     public UserDto convert(User source) {
 
-        UserDto user = new UserDto();
-        user.setId(source.getId());
-        user.setEmail(source.getEmail());
-        user.setName(source.getName());
-        user.setSurname(source.getSurname());
-
-        return user;
+        return new UserDto.Builder()
+                .id(source.getId())
+                .name(source.getName())
+                .email(source.getEmail())
+                .surname(source.getSurname())
+                .build();
     }
 }
