@@ -8,20 +8,38 @@ public class CategoryDto {
     public CategoryDto() {
     }
 
-    public int getId() {
-        return id;
+    private CategoryDto(Builder builder) {
+        this.id = builder.id;
+        this.name = builder.name;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public static class Builder {
+        private int id;
+        private String name;
+
+        public Builder() {
+        }
+
+        public Builder id(int val) {
+            this.id=val;
+            return this;
+        }
+        public Builder name(String val) {
+            this.name = val;
+            return this;
+        }
+
+        public CategoryDto build() {
+            return new CategoryDto(this);
+        }
+    }
+    public int getId() {
+        return id;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
 }

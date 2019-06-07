@@ -10,10 +10,9 @@ public class CategoryConverter implements Converter<Category, CategoryDto> {
     @Override
     public CategoryDto convert(Category source) {
 
-        CategoryDto category=new CategoryDto();
-        category.setId(source.getId());
-        category.setName(source.getName());
-
-        return category;
+        return new CategoryDto.Builder()
+                .id(source.getId())
+                .name(source.getName())
+                .build();
     }
 }

@@ -17,6 +17,8 @@ import java.util.List;
 
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.core.Is.is;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -33,8 +35,14 @@ public class CategoryControllerTest {
 
     @Test
     public void getAllCategories() throws Exception {
-        CategoryDto gorskie = createCategory(3, "gorskie");
-        CategoryDto damskie = createCategory(4, "damskie");
+        CategoryDto gorskie = new CategoryDto.Builder()
+                .id(3)
+                .name("gorskie")
+                .build();
+        CategoryDto damskie = new CategoryDto.Builder()
+                .id(4)
+                .name("damskie")
+                .build();
         List<CategoryDto> categories= Arrays.asList(gorskie, damskie);
 
         when(categoryService.getAllCategories()).thenReturn(categories);
@@ -45,12 +53,17 @@ public class CategoryControllerTest {
                 .andExpect(jsonPath("$",hasSize(2)))
                 .andExpect(jsonPath("$[0].id",is(gorskie.getId())))
                 .andExpect(jsonPath("$[1].name",is(damskie.getName())));
+
+        verify(categoryService, times(1)).getAllCategories();
     }
 
     @Test
     public void getExistingCategory() throws Exception {
         int categoryId=1;
-        CategoryDto category = createCategory(categoryId, "gorskie");
+        CategoryDto category = new CategoryDto.Builder()
+                .id(categoryId)
+                .name("gorskie")
+                .build();
 
         when(categoryService.categoryExist(categoryId)).thenReturn(true);
         when(categoryService.getConvertedCategory(categoryId)).thenReturn(category);
@@ -59,6 +72,9 @@ public class CategoryControllerTest {
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("id", is(category.getId())));
+
+        verify(categoryService, times(1)).categoryExist(categoryId);
+        verify(categoryService, times(1)).getConvertedCategory(categoryId);
     }
 
     @Test
@@ -67,16 +83,11 @@ public class CategoryControllerTest {
         int categoryId=1;
 
         when(categoryService.categoryExist(categoryId)).thenReturn(false);
-        when(categoryService.getConvertedCategory(categoryId)).thenThrow(ItemNotFoundException.class);
 
         this.mockMvc.perform(get("http://localhost:8081/api/v1/categories/" + categoryId))
                 .andExpect(status().isNotFound());
-    }
 
-    private CategoryDto createCategory(int id, String name) {
-        CategoryDto category = new CategoryDto();
-        category.setId(id);
-        category.setName(name);
-        return category;
+        verify(categoryService, times(1)).categoryExist(categoryId);
+        verify(categoryService, times(0)).getConvertedCategory(categoryId);
     }
 }
