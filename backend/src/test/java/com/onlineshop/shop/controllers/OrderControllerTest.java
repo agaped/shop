@@ -99,10 +99,10 @@ public class OrderControllerTest {
     }
 
     private OrderDto createOrder(String delivery, int total, int userId) {
-        OrderDto order = new OrderDto();
-        order.setDelivery(delivery);
-        order.setTotal(new BigDecimal(total));
-        order.setUserId(userId);
-        return order;
+        return new OrderDto.Builder()
+                .delivery(delivery)
+                .total(new BigDecimal(total))
+                .userId(userId)
+                .build();
     }
 }
