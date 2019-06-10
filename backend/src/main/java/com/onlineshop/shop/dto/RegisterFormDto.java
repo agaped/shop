@@ -10,42 +10,61 @@ public class RegisterFormDto {
     public RegisterFormDto() {
     }
 
-    public RegisterFormDto(String email, String name, String surname, String pass) {
-        this.email = email;
-        this.name = name;
-        this.surname = surname;
-        this.password = pass;
+    public RegisterFormDto(Builder builder) {
+        this.email = builder.email;
+        this.name = builder.name;
+        this.surname = builder.surname;
+        this.password = builder.password;
+    }
+
+    public static class Builder {
+
+        private String email;
+        private String name;
+        private String surname;
+        private String password;
+
+        public Builder() {
+        }
+
+        public Builder email(String val) {
+            this.email=val;
+            return this;
+        }
+
+        public Builder name(String val) {
+            this.name=val;
+            return this;
+        }
+
+        public Builder surname(String val) {
+            this.surname=val;
+            return this;
+        }
+
+        public Builder password(String val) {
+            this.password=val;
+            return this;
+        }
+
+        public RegisterFormDto build() {
+            return new RegisterFormDto(this);
+        }
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getSurname() {
         return surname;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }
