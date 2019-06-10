@@ -5,28 +5,43 @@ public class CartItemDto {
     private ProductDto item;
     private Integer quantity;
 
-    public CartItemDto(ProductDto product, Integer quantity) {
-        this.item = product;
-        this.quantity = quantity;
+    public CartItemDto(Builder builder) {
+        this.item = builder.item;
+        this.quantity = builder.quantity;
     }
 
     public CartItemDto() {
+    }
+
+    public static class Builder {
+
+        private ProductDto item;
+        private Integer quantity;
+
+        public Builder() {
+        }
+
+        public Builder item(ProductDto val) {
+            this.item = val;
+            return this;
+        }
+
+        public Builder quantity(Integer val) {
+            this.quantity = val;
+            return this;
+        }
+
+        public CartItemDto build() {
+            return new CartItemDto(this);
+        }
     }
 
     public ProductDto getItem() {
         return item;
     }
 
-    public void setItem(ProductDto item) {
-        this.item = item;
-    }
-
     public Integer getQuantity() {
         return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
     }
 
     public String toString() {

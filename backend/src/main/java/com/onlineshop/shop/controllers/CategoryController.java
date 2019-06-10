@@ -1,6 +1,7 @@
 package com.onlineshop.shop.controllers;
 
 import com.onlineshop.shop.dto.CategoryDto;
+import com.onlineshop.shop.exceptions.ItemNotFoundException;
 import com.onlineshop.shop.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,7 +30,7 @@ public class CategoryController {
     @RequestMapping(method = RequestMethod.GET, path = "/{id}")
     public CategoryDto getCategory(@PathVariable("id") int id) {
         if(!categoryService.categoryExist(id)){
-            throw new IllegalArgumentException("Category of given id does not exist "+id);
+            throw new ItemNotFoundException("Category of given id does not exist "+id);
         }
         return categoryService.getConvertedCategory(id);
     }

@@ -8,24 +8,39 @@ public class LoginFormDto {
     public LoginFormDto() {
     }
 
-    public LoginFormDto(String username, String password) {
-        this.username = username;
-        this.password = password;
+    public LoginFormDto(Builder builder) {
+        this.username = builder.username;
+        this.password = builder.password;
+    }
+
+    public static class Builder {
+
+        private String username;
+        private String password;
+
+        public Builder() {
+        }
+
+        public Builder username(String val) {
+            this.username = val;
+            return this;
+        }
+
+        public Builder password(String val) {
+            this.password = val;
+            return this;
+        }
+
+        public LoginFormDto build() {
+            return new LoginFormDto(this);
+        }
     }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getPassword() {
         return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }

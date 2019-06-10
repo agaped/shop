@@ -12,15 +12,14 @@ public class ProductConverter implements Converter<Product, ProductDto> {
     @Override
     public ProductDto convert(Product source) {
 
-        ProductDto productDto = new ProductDto();
-        productDto.setId(source.getId());
-        productDto.setName(source.getName());
-        productDto.setPrice(source.getPrice());
-        productDto.setProducer(source.getProducer());
-        productDto.setDescription(source.getDescription());
-        productDto.setCategory(source.getCategory().getName());
-        productDto.setUrl(source.getImg().getUrl());
-
-        return productDto;
+        return new ProductDto.Builder()
+                .id(source.getId())
+                .name(source.getName())
+                .category(source.getCategory().getName())
+                .producer(source.getProducer())
+                .price(source.getPrice())
+                .description(source.getDescription())
+                .url(source.getImg().getUrl())
+                .build();
     }
 }
