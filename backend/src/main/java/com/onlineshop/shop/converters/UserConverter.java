@@ -10,7 +10,7 @@ public class UserConverter implements Converter<User, UserDto> {
     @Override
     public UserDto convert(User source) {
 
-        return new UserDto.Builder()
+        return UserDto.builder()
                 .id(source.getId())
                 .name(source.getName())
                 .email(source.getEmail())

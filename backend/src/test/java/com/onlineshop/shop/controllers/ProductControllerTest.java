@@ -33,7 +33,7 @@ public class ProductControllerTest {
 
     @Test
     public void getAllProducts() throws Exception {
-        ProductDto product=new ProductDto.Builder()
+        ProductDto product=ProductDto.builder()
                 .id(1)
                 .build();
         List<ProductDto> allProducts=new ArrayList<>();
@@ -52,7 +52,7 @@ public class ProductControllerTest {
     public void getExistingProduct() throws Exception {
         int id=1;
         String name="Woman bike";
-        ProductDto product = new ProductDto.Builder()
+        ProductDto product = ProductDto.builder()
                 .id(id)
                 .name(name)
                 .build();
@@ -70,7 +70,7 @@ public class ProductControllerTest {
     @ExceptionHandler(ItemNotFoundException.class)
     public void getNonExistingProduct() throws Exception {
         int id=1;
-        ProductDto product = new ProductDto.Builder()
+        ProductDto product = ProductDto.builder()
                 .id(id)
                 .build();
 
