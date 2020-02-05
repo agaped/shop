@@ -33,7 +33,7 @@ public class LoginControllerTest {
     @Test
     public void login_whenUserExists() throws Exception {
         String email = "email";
-        UserDto user = new UserDto.Builder()
+        UserDto user = UserDto.builder()
                 .id(1)
                 .email(email)
                 .build();
@@ -85,7 +85,7 @@ public class LoginControllerTest {
 
     @Test
     public void registerUser() throws Exception {
-        UserDto user = new UserDto.Builder()
+        UserDto user = UserDto.builder()
                 .id(12)
                 .name("Jan")
                 .build();

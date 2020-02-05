@@ -35,11 +35,11 @@ public class CategoryControllerTest {
 
     @Test
     public void getAllCategories() throws Exception {
-        CategoryDto gorskie = new CategoryDto.Builder()
+        CategoryDto gorskie = CategoryDto.builder()
                 .id(3)
                 .name("gorskie")
                 .build();
-        CategoryDto damskie = new CategoryDto.Builder()
+        CategoryDto damskie = CategoryDto.builder()
                 .id(4)
                 .name("damskie")
                 .build();
@@ -60,7 +60,7 @@ public class CategoryControllerTest {
     @Test
     public void getExistingCategory() throws Exception {
         int categoryId=1;
-        CategoryDto category = new CategoryDto.Builder()
+        CategoryDto category = CategoryDto.builder()
                 .id(categoryId)
                 .name("gorskie")
                 .build();

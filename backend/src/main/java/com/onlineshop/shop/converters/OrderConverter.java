@@ -10,7 +10,7 @@ public class OrderConverter implements Converter<ClientOrder, OrderDto> {
     @Override
     public OrderDto convert(ClientOrder source) {
 
-        return new OrderDto.Builder()
+        return OrderDto.builder()
                 .date(source.getDate())
                 .payment(source.getPayment())
                 .delivery(source.getDelivery())
